@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from apps.product.models import Product
+from apps.product.models import ProductVariant
 
 User = get_user_model()
 
@@ -23,12 +23,9 @@ class CartItem(models.Model):
         on_delete=models.CASCADE,
         related_name='items'
     )
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE
+    variant = models.ForeignKey(
+        ProductVariant, on_delete=models.CASCADE
     )
-    quantity = models.PositiveIntegerField(default=1)
-
     def __str__(self):
         return self.product.name
     

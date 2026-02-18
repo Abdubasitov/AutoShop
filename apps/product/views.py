@@ -1,15 +1,29 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.shortcuts import get_list_or_404, redirect
 from django.urls import reverse_lazy
 from django.db.models import Prefetch
+from apps.brand.models import Brand
+from apps.blog.models import BlogPost
 
-from .models import Category, Product, Review
+from .models import Category, Product, Review, ProductVariant
 
+class HomeView(TemplateView):
+    template_name = 'index.html'
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.filter(is_active=True, parent__isnull=True)[:8]
+        context['products'] = Product.objects.filter(is_available=True)[:8]
+        context['products'] = Product.objects.filter(is_available=True)[:8]
+        context['brand'] = Brand.objects.all()
+        context['post'] = BlogPost.objects.all()
+        return context
 
 class CategoryListView(ListView):
     model = Category
-    template_name = 'product/category_list.html'
+    template_name = 'pages/category_list.html'
     context_object_name = 'categories'
     
     def get_queryset(self):
@@ -18,7 +32,7 @@ class CategoryListView(ListView):
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'product/product_list.html'
+    template_name = 'product/pages.html'
     context_object_name = 'products'
     paginate_by = 12
     

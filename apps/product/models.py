@@ -9,7 +9,7 @@ User = get_user_model()
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название категории')
     slug = models.SlugField(unique=True)
-    perent = models.ForeignKey(
+    parent = models.ForeignKey(
         'self', on_delete=models.CASCADE,
         null=True, blank=True,
         related_name='children',
@@ -28,7 +28,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
         verbose_name = 'Категория'
     
-    
+
 class Brand(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название бренда')
     slug = models.SlugField(unique=True)
@@ -57,7 +57,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     stock = models.PositiveIntegerField(default=0)
-    is_availavel = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def save(self, *args, **kwargs):

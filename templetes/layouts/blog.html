@@ -1,0 +1,51 @@
+<!--blog area start-->
+<div class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title title_style2">
+                    <div class="title_content">
+                        <h2><span>Latest</span> Blog Posts</h2>
+                        <p>The highest discount products of Mazlay</p>   
+                    </div>                 
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="blog_container blog_column4 owl-carousel">
+                {% for post in posts %}
+                <div class="col-lg-3">
+                    <article class="single_blog">
+                        <figure>
+                            <div class="blog_thumb">
+                                <a href="{% url 'blog_detail' post.slug %}">
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                </a>
+                            </div>
+                            <figcaption class="blog_content">
+                                <h4>
+                                    <a href="{% url 'blog_detail' post.slug %}">
+                                        {{ post.title }}
+                                    </a>
+                                </h4> 
+                                <div class="post_meta">
+                                    <p>
+                                        <a href="#">{{ post.category.name }}</a> / {{ post.publish_date|date:"d M" }}
+                                    </p>
+                                </div>
+                                <div class="post_desc">
+                                    <p>{{ post.short_description }}</p>
+                                </div>
+                                <footer class="post_readmore">
+                                    <a href="{% url 'blog_detail' post.slug %}">Continue Reading</a>
+                                </footer>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>          
+    </div>
+</div>
+<!--blog area end-->
