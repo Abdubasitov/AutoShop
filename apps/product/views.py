@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.shortcuts import get_list_or_404, redirect
 from django.urls import reverse_lazy
 from django.db.models import Prefetch
-from apps.brand.models import Brand
+from apps.partners.models import Brand
 from apps.blog.models import BlogPost
 
 from .models import Category, Product, Review, ProductVariant
