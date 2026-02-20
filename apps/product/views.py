@@ -17,8 +17,8 @@ class HomeView(TemplateView):
         context['categories'] = Category.objects.filter(is_active=True, parent__isnull=True)[:8]
         context['products'] = Product.objects.filter(is_available=True)[:8]
         context['products'] = Product.objects.filter(is_available=True)[:8]
-        context['brand'] = Brand.objects.all()
-        context['post'] = BlogPost.objects.all()
+        context['brands'] = Brand.objects.all()
+        context['posts'] = BlogPost.objects.all()
         return context
 
 class CategoryListView(ListView):

@@ -18,13 +18,13 @@
                     <article class="single_blog">
                         <figure>
                             <div class="blog_thumb">
-                                <a href="{% url 'blog_detail' post.slug %}">
+                                <a href="">
                                     <img src="{{ post.image.url }}" alt="{{ post.title }}">
                                 </a>
                             </div>
                             <figcaption class="blog_content">
                                 <h4>
-                                    <a href="{% url 'blog_detail' post.slug %}">
+                                    <a href="">
                                         {{ post.title }}
                                     </a>
                                 </h4> 
@@ -37,7 +37,7 @@
                                     <p>{{ post.short_description }}</p>
                                 </div>
                                 <footer class="post_readmore">
-                                    <a href="{% url 'blog_detail' post.slug %}">Continue Reading</a>
+                                    <a href="">Continue Reading</a>
                                 </footer>
                             </figcaption>
                         </figure>
