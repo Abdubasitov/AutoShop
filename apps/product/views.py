@@ -19,6 +19,12 @@ class HomeView(TemplateView):
         context['products'] = Product.objects.filter(is_available=True)[:8]
         context['brands'] = Brand.objects.all()
         context['posts'] = BlogPost.objects.all()
+        context['products'] = (
+            Product.objects
+            .filter(is_available=True)
+            .select_related('brand', 'category')
+            .prefetch_related('images')
+        )
         return context
 
 class CategoryListView(ListView):
@@ -28,7 +34,7 @@ class CategoryListView(ListView):
     
     def get_queryset(self):
         return Category.objects.filter(is_active=True, parent__isnull=True)
-    
+
 
 class ProductListView(ListView):
     model = Product
