@@ -1,5 +1,5 @@
 
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,10 +114,62 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_DIR = BASE_DIR / 'static'
-STATICFILES_DIRS = [STATIC_DIR]
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+UNFOLD = {
+    "SITE_HEADER": "Абай",
+    "STYLES": [
+        "admin/custom.css",
+    ],
+    "SIDEBAR": {
+        "navigation": [
+            {
+                "title": "Контент",
+                "items": [
+                    {
+                        "title": "Товары",
+                        "icon": "shopping_cart",
+                        "link": "/admin/product/",
+                    },
+                    {
+                        "title": "Пертнеры",
+                        "icon": "business",
+                        "link": "/admin/partners/",
+                    },
+                    {
+                        "title": "Новости",
+                        "icon": "article",
+                        "link": "/admin/blog/",
+                    },
+                    {
+                        "title": "О нас",
+                        "icon": "info",
+                        "link": "/admin/about/",
+                    },
+                ],
+            },
+            {
+                "title": "Пользователи",
+                "items": [
+                    {
+                        "title": "Пользователи",
+                        "icon": "person",
+                        "link": "/admin/auth/user/",
+                    },
+                    {
+                        "title": "Группы",
+                        "icon": "group",
+                        "link": "/admin/auth/group/",
+                    },
+                ],
+            },
+        ],
+    },
+
+}

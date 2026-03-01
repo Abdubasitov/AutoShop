@@ -9,7 +9,9 @@ from .models import (
     ProductVariant,
     Review
 )
+from django.contrib import admin
 
+admin.site.index_title = "Добро пожаловать"
 
 # CATEGORY
 
@@ -33,7 +35,7 @@ class BrandAdmin(admin.ModelAdmin):
 # INLINES FOR PRODUCT
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 1
+    extra = 2
 
 class ProductVariantInline(admin.TabularInline):
     model = ProductVariant
